@@ -2,13 +2,10 @@ import csv
 import math
 
 CODE = [0] * 5000
-IDIM = 0
-FDIM = 0
-IMAX = 0
-FMAX = 0
+IDIM, FDIM, IMAX, FMAX= 0
 
 cont = 0
-DIFF = [0] * 5000
+DIFF = [0 for i in range(500)]
 
 NODE = [[[-2] * 2] * 5000] * 5000
 SA = [''] * 5000 
@@ -72,7 +69,7 @@ class Compression:
                     last = z
             print(last, min)
 
-            if(P[last]==0)and(P[min]==0):
+            if(P[last]==0) and (P[min]==0):
                 P[last] = 1
                 S[min] = 1
                 F[last] = c
@@ -83,7 +80,7 @@ class Compression:
                 c += 1
                 NODE[level[nlv]][nlv][0] = last
                 NODE[level[nlv]][nlv][1] = min
-            elif(P[last]==1)and(P[min]==1):
+            elif(P[last]==1) and w(P[min]==1):
                 if(F[last]<F[min]):
                     nlv = F[last]
                     S[min] = 1
@@ -128,7 +125,7 @@ class Compression:
             for z in range(0, contt):
                 sa += "0"
             
-            if(NODE[j][0][0] == -1)and(NODE[j][0][1] == -1):
+            if(NODE[j][0][0] == -1) and (NODE[j][0][1] == -1):
                 self.S1S1(j, Top, lc, sa)              
             
             elif(NODE[j][0][0] == -1):
@@ -169,7 +166,7 @@ class Compression:
             SA[NODE[contlv][max][1]] = sa+"1"
         if(NODE[contlv][max][0] != -1):
             SA[NODE[contlv][max][0]] = sa+"0"
-        if(NODE[contlv][max][0] == -1)and(NODE[contlv][max][1] == -1):
+        if(NODE[contlv][max][0] == -1) and (NODE[contlv][max][1] == -1):
             self.S1S1(j, Top, lc, sa)
         
         if(NODE[contlv][max][0] == -1):
@@ -210,6 +207,3 @@ class Compression:
 
 
 OB = Compression()
-
-
-
